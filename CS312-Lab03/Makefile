@@ -1,11 +1,11 @@
-all: hellotriangle.out transform.out
+all: assignment3-cube.out assignment3-rectangle.out
 
-hellotriangle.out: hellotriangle.cpp ../glad.o
-	clang++ -lglfw -framework OpenGL -o hellotriangle.out hellotriangle.cpp ../glad.o
+assignment3-cube.out: assignment3-cube.cpp ../glad.o
+	clang++ -lglfw -framework OpenGL -o assignment3-cube.out assignment3-cube.cpp ../glad.o
 
-transform.out: transform.cpp
-	clang++ -lglfw -framework OpenGL -o transform.out transform.cpp
+assignment3-rectangle.out: assignment3-rectangle.cpp ../glad.o
+	clang++ -lglfw -framework OpenGL -o assignment3-rectangle.out assignment3-rectangle.cpp ../glad.o
 
 .PHONY: clean
 clean:
-	rm hellotriangle.out transform.out
+	rm assignment3-cube.out assignment3-rectangle.out
