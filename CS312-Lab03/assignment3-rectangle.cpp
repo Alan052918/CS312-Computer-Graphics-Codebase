@@ -117,7 +117,6 @@ int main() {
       -0.5f, -0.5f, 0.0f,  // bottom left
       -0.5f, 0.5f,  0.0f   // top right
   };
-  GLuint elements[] = {0, 1, 2, 2, 3, 0};
   GLuint VAO, VBO;
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
