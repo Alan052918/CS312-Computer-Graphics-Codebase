@@ -78,7 +78,10 @@ int main() {
 
   // Create fragment shader
   GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-  glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+  glShaderSource(fragmentShader,// shader object
+  1, //
+  &fragmentShaderSource,
+  NULL);
   glCompileShader(fragmentShader);
 
   // check for compilation failure
@@ -117,13 +120,22 @@ int main() {
       -0.5f, -0.5f, 0.0f,  // bottom left
       -0.5f, 0.5f,  0.0f   // top right
   };
-  GLuint VAO, VBO;
+  GLuint VAO; // describe how vertex attributes are stored in VBO
+  GLuint VBO; // source for vertex array data
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glBindVertexArray(VAO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)0);
+
+  // define an array of generic vertex attribute data
+  glVertexAttribPointer(
+      0,         // index of the generic vertex attribute to be modified
+      3,         // number of components per generic vertex attribute
+      GL_FLOAT,  // data type of each component
+      GL_FALSE,  // specifies whether fixed-point data should be normalized
+      sizeof(float) * 3,  // byte offset between consecutive attributes
+      (void *)0);  // offset of the first component of the first attribute
   glEnableVertexAttribArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
