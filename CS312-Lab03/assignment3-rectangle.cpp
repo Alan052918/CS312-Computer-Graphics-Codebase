@@ -49,50 +49,28 @@ int main() {
 
   // Create vertex shader
   GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
-  // Attach shader source code to shader object and compile shader
-  // replace the source code of a given shader object
-  glShaderSource(
-      vertexShader,         // shader object
-      1,                    // string count
-      &vertexShaderSource,  // array of pointers to strings of source code
-      NULL);                // array of string lengths
+  glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
   glCompileShader(vertexShader);
 
   // Check whether compilation is successful
   GLint success;
   GLchar infoLog[512];
-
-  // query shader object information: compile status
-  glGetShaderiv(vertexShader,       // shader object
-                GL_COMPILE_STATUS,  // queried object parameter
-                &success);          // returned object parameter
+  glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
   if (!success) {
-    glGetShaderInfoLog(vertexShader,  // shader object
-                       512,           // max buffer size
-                       NULL,          // info log length
-                       infoLog);      // info log (char array)
+    glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
     std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n"
               << infoLog << std::endl;
   }
 
   // Create fragment shader
   GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-  glShaderSource(fragmentShader,// shader object
-  1, //
-  &fragmentShaderSource,
-  NULL);
+  glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
   glCompileShader(fragmentShader);
 
   // check for compilation failure
-  glGetShaderiv(fragmentShader,     // shader object
-                GL_COMPILE_STATUS,  // queried object parameter
-                &success);          // returned object parameter
+  glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
   if (!success) {
-    glGetShaderInfoLog(fragmentShader,  // shader object
-                       512,             // max buffer size
-                       NULL,            // info log length
-                       infoLog);        // info log (char array)
+    glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
     std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"
               << infoLog << std::endl;
   }
@@ -120,22 +98,13 @@ int main() {
       -0.5f, -0.5f, 0.0f,  // bottom left
       -0.5f, 0.5f,  0.0f   // top right
   };
-  GLuint VAO; // describe how vertex attributes are stored in VBO
-  GLuint VBO; // source for vertex array data
+  GLuint VAO, VBO;
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glBindVertexArray(VAO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
-
-  // define an array of generic vertex attribute data
-  glVertexAttribPointer(
-      0,         // index of the generic vertex attribute to be modified
-      3,         // number of components per generic vertex attribute
-      GL_FLOAT,  // data type of each component
-      GL_FALSE,  // specifies whether fixed-point data should be normalized
-      sizeof(float) * 3,  // byte offset between consecutive attributes
-      (void *)0);  // offset of the first component of the first attribute
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)0);
   glEnableVertexAttribArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
