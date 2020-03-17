@@ -146,11 +146,12 @@ int main() {
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    glfwSwapBuffers(window);
     glfwPollEvents();
+    glfwSwapBuffers(window);
   }
   glDeleteVertexArrays(1, &VAO);
   glDeleteBuffers(1, &VBO);
+  glfwDestroyWindow(window);
   glfwTerminate();
 }
 

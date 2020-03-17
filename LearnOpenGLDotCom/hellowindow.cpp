@@ -53,6 +53,7 @@ int main() {
     // swap front (final output) and back (run rendering) buffer
     glfwSwapBuffers(window);
   }
+  glfwDestroyWindow(window);
   glfwTerminate();
 }
 
