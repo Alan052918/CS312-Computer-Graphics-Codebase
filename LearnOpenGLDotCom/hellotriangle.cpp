@@ -122,13 +122,16 @@ int main() {
       0.0f,  0.5f,  0.0f   // top
   };
 
-  GLuint VAO;  // describe how vertex attributes are stored in VBO
+  // Create vertex buffer object
   GLuint VBO;  // source for vertex array data
-  glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
-  glBindVertexArray(VAO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+
+  // Create vertex array object
+  GLuint VAO;  // describe how vertex attributes are stored in VBO
+  glGenVertexArrays(1, &VAO);
+  glBindVertexArray(VAO);
 
   // define an array of generic vertex attribute data
   glVertexAttribPointer(
@@ -141,11 +144,15 @@ int main() {
   glEnableVertexAttribArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
+
+  // Render loop
   while (!glfwWindowShouldClose(window)) {
     ProcessInput(window);
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
+
+    // Poll I/O events and swap buffer to refresh display output
     glfwPollEvents();
     glfwSwapBuffers(window);
   }
