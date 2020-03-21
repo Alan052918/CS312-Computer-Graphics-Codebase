@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+const unsigned int SCR_WIDTH = 500;
+const unsigned int SCR_HEIGHT = 400;
+
 // shader source code in GLSL
 const char *vertexShaderSource =
     "#version 330 core\n"
@@ -21,6 +24,8 @@ const char *fragmentShaderSource =
     "}\0";
 
 void FramebufferSizeCallback(GLFWwindow *, int, int);
+
+void ProcessInput(GLFWwindow *);
 
 int main() {
   glfwInit();
@@ -109,8 +114,7 @@ int main() {
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
   while (!glfwWindowShouldClose(window)) {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-      glfwSetWindowShouldClose(window, true);
+    ProcessInput(window);
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -124,4 +128,9 @@ int main() {
 
 void FramebufferSizeCallback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
+}
+
+void ProcessInput(GLFWwindow *window) {
+  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    glfwSetWindowShouldClose(window, true);
 }
