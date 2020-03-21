@@ -142,8 +142,13 @@ int main() {
       sizeof(float) * 3,  // byte offset between consecutive attributes
       (void *)0);  // offset of the first component of the first attribute
   glEnableVertexAttribArray(0);
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
-  glBindVertexArray(0);
+
+  // buffer set to zero effectively unbinds any buffer object previously bound,
+  // and restores client memory usage for that buffer object target (if
+  // supported for that target).
+  glBindBuffer(GL_ARRAY_BUFFER,  // target
+               0);               // buffer
+  glBindVertexArray(0);          // buffer
 
   // Render loop
   while (!glfwWindowShouldClose(window)) {
