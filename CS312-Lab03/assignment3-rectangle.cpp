@@ -38,8 +38,7 @@ int main() {
 #endif
 
   // create glfw window
-  GLFWwindow *window =
-      glfwCreateWindow(500, 400, "Shape and Shader", NULL, NULL);
+  GLFWwindow *window = glfwCreateWindow(500, 400, "Rectangle", NULL, NULL);
   if (!window) {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
@@ -56,8 +55,6 @@ int main() {
   GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
   glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
   glCompileShader(vertexShader);
-
-  // Check whether compilation is successful
   GLint success;
   GLchar infoLog[512];
   glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
@@ -71,8 +68,6 @@ int main() {
   GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
   glCompileShader(fragmentShader);
-
-  // check for compilation failure
   glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
@@ -85,15 +80,12 @@ int main() {
   glAttachShader(shaderProgram, vertexShader);
   glAttachShader(shaderProgram, fragmentShader);
   glLinkProgram(shaderProgram);
-
-  // check for link failure
   glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
   if (!success) {
     glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
     std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
               << infoLog << std::endl;
   }
-
   glDeleteShader(vertexShader);
   glDeleteShader(fragmentShader);
 
@@ -103,26 +95,35 @@ int main() {
       -0.5f, -0.5f, 0.0f,  // bottom left
       -0.5f, 0.5f,  0.0f   // top right
   };
-  GLuint VAO, VBO;
-  glGenVertexArrays(1, &VAO);
+
+  // create vertex buffer object
+  GLuint VBO;
   glGenBuffers(1, &VBO);
-  glBindVertexArray(VAO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+
+  // create vertex array object
+  GLuint VAO;
+  glGenVertexArrays(1, &VAO);
+  glBindVertexArray(VAO);
+
+  // create vertex attribute pointer
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)0);
   glEnableVertexAttribArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
+
   while (!glfwWindowShouldClose(window)) {
     ProcessInput(window);
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    glfwSwapBuffers(window);
     glfwPollEvents();
+    glfwSwapBuffers(window);
   }
   glDeleteVertexArrays(1, &VAO);
   glDeleteBuffers(1, &VBO);
+  glfwDestroyWindow(window);
   glfwTerminate();
 }
 
@@ -131,6 +132,7 @@ void FramebufferSizeCallback(GLFWwindow *window, int width, int height) {
 }
 
 void ProcessInput(GLFWwindow *window) {
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
     glfwSetWindowShouldClose(window, true);
+  }
 }
