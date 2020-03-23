@@ -25,7 +25,7 @@ int main() {
 
   // Online tutorial said the line below is needed for initialization on macOS.
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-  window = glfwCreateWindow(720, 540, "Hello OpenGL", NULL, NULL);
+  window = glfwCreateWindow(720, 540, "艾君达 11711310", NULL, NULL);
   if (!window) {
     glfwTerminate();
     return -1;
