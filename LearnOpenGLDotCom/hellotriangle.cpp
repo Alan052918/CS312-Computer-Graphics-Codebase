@@ -39,7 +39,7 @@ int main() {
 
   // create glfw window
   GLFWwindow *window =
-      glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Hello Window", NULL, NULL);
+      glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Hello Triangle", NULL, NULL);
   if (!window) {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
