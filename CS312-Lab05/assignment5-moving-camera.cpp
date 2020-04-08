@@ -11,6 +11,7 @@
  * - D: go right
  * - Q: go up
  * - E: go down
+ * - Esc: exit program
  * Reference: https://learnopengl.com/Getting-started/Camera
  */
 
