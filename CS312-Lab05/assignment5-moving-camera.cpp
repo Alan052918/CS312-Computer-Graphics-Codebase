@@ -1,3 +1,19 @@
+/**
+ * Author: Junda Ai
+ * Created: 2020/04/09
+ * Overview: a movable camera contorlled by keyboard and mouse that can view a
+ * colored cube from all directions.
+ * Mouse: shooting direction
+ * Keys:
+ * - W: go near
+ * - S: go away
+ * - A: go left
+ * - D: go right
+ * - Q: go up
+ * - E: go down
+ * Reference: https://learnopengl.com/Getting-started/Camera
+ */
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
