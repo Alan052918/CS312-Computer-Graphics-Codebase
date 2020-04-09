@@ -60,7 +60,7 @@ void FramebufferSizeCallback(GLFWwindow *, int, int);
 void MouseCallback(GLFWwindow *, double, double);
 void ScrollCallback(GLFWwindow *, double, double);
 void ProcessInput(GLFWwindow *);
-void setVec4(const GLuint &, const std::string &, const glm::vec4 &);
+void SetVec4(const GLuint &, const std::string &, const glm::vec4 &);
 
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -272,7 +272,7 @@ void ScrollCallback(GLFWwindow *window, double xoffset, double yoffset) {
   if (fov >= 45.0f) fov = 45.0f;
 }
 
-void setVec4(const GLuint &program, const std::string &name,
+void SetVec4(const GLuint &program, const std::string &name,
              const glm::vec4 &value) {
   glUniform4fv(glGetUniformLocation(program, name.c_str()), 1, &value[0]);
 }
