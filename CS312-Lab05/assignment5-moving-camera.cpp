@@ -55,15 +55,14 @@ float pitch = 0.0f;
 float lastX = 800.0f / 2.0;
 float lastY = 600.0 / 2.0;
 float fov = 45.0f;
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
 
 void FramebufferSizeCallback(GLFWwindow *, int, int);
 void MouseCallback(GLFWwindow *, double, double);
 void ScrollCallback(GLFWwindow *, double, double);
 void ProcessInput(GLFWwindow *);
 void SetVec4(const GLuint &, const std::string &, const glm::vec4 &);
-
-float deltaTime = 0.0f;
-float lastFrame = 0.0f;
 
 int main() {
   glfwInit();
