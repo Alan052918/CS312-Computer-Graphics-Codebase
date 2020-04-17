@@ -62,7 +62,6 @@ void FramebufferSizeCallback(GLFWwindow *, int, int);
 void MouseCallback(GLFWwindow *, double, double);
 void ScrollCallback(GLFWwindow *, double, double);
 void ProcessInput(GLFWwindow *);
-void SetVec4(const GLuint &, const std::string &, const glm::vec4 &);
 
 int main() {
   glfwInit();
@@ -269,9 +268,4 @@ void ScrollCallback(GLFWwindow *window, double xoffset, double yoffset) {
   if (fov >= 1.0f && fov <= 45.0f) fov -= yoffset;
   if (fov <= 1.0f) fov = 1.0f;
   if (fov >= 45.0f) fov = 45.0f;
-}
-
-void SetVec4(const GLuint &program, const std::string &name,
-             const glm::vec4 &value) {
-  glUniform4fv(glGetUniformLocation(program, name.c_str()), 1, &value[0]);
 }
