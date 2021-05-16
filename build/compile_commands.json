@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/aijunda/GitHub/MyRepos/CS312-Computer-Graphics-Codebase/build",
+  "command": "/usr/bin/clang++    -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -o CMakeFiles/texture-mapping.dir/main.cpp.o -c /Users/aijunda/GitHub/MyRepos/CS312-Computer-Graphics-Codebase/main.cpp",
+  "file": "/Users/aijunda/GitHub/MyRepos/CS312-Computer-Graphics-Codebase/main.cpp"
+}
+]
